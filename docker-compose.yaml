@@ -1,28 +1,12 @@
 version: '3.3'
 
 services:
-  db-backend-netuno:
+  mysql:
     container_name: mysql-netuno
     image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-      - "3318:3307"
+      - "3308:3306"
     environment:
-      MYSQL_DATABASE: NETUNO
-      MYSQL_ROOT_PASSWORD: NETUNO@123
-    networks:
-      - app-network
-
-  server:
-    build: .
-    ports:
-      - "3001:3001"
-    environment:
-      DATABASE_URL: 'mysql://root:NETUNO@123@localhost:3307/NETUNO'
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+      MYSQL_DATABASE: netuno
+      MYSQL_ROOT_PASSWORD: netuno@123
