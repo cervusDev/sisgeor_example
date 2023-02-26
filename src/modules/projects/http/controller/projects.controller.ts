@@ -7,36 +7,36 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ProjectsService } from '../../usecases/projects.service';
 import { CreateProjectDto } from '../dto/create-project.dto';
 import { UpdateProjectDto } from '../dto/update-project.dto';
+import { FindAllProjectsUseCase } from '../../usecases/find_all/find_all_projects.usecase';
 
 @Controller('projects')
 export class ProjectsController {
-  constructor(private readonly projectsService: ProjectsService) {}
+  constructor(private readonly getAllUseCases: FindAllProjectsUseCase) {}
 
   @Post()
-  create(@Body() createProjectDto: CreateProjectDto) {
-    return this.projectsService.create(createProjectDto);
+  public async create(@Body() createProjectDto: CreateProjectDto) {
+    throw new Error('Method not implemented.');
   }
 
   @Get()
   findAll() {
-    return this.projectsService.findAll();
+    return this.getAllUseCases.execute();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.projectsService.findOne(+id);
+    throw new Error('Method not implemented.');
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectsService.update(+id, updateProjectDto);
+    throw new Error('Method not implemented.');
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.projectsService.remove(+id);
+    throw new Error('Method not implemented.');
   }
 }
