@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
+import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from 'src/infra/database/prisma/prisma.service';
 import { UsersPrismaRepository } from '../../gateaways/prisma/users.prisma.repository';
 

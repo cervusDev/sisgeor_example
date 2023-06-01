@@ -10,6 +10,7 @@ interface IReq {
 @Injectable()
 export class FindUserByEmailUseCase implements UseCase<IReq, User> {
   constructor(private readonly repository: UsersPrismaRepository) {}
+
   public execute({ email }: IReq): Promise<User> {
     if (!email) {
       throw new BadRequestException('email ausente.');

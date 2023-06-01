@@ -14,14 +14,14 @@ model User {
   id            Int          @id @default(autoincrement())
 
   email         String       @unique
+  
   password      String
-
   role Role
-
-  deletedAt     DateTime?
   
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
+
+  deletedAt     DateTime?
 
   Projects Projects[]
 
@@ -31,27 +31,15 @@ model User {
 model Projects {
   id Int @id @default(autoincrement())
 
-  team Team
-  status Status
-
-  client String
-  document String
-
   name String
-  responsible String
   description String
 
-  endDate   String
-  startDate String
-
-  realEndDate String
-  realStartDate String
-
-  deletedAt DateTime?
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+  
+  deletedAt DateTime?
 
-  Tasks Taks[]
+  Actions Actions[]
 
   UserId Int
   User User @relation(fields: [UserId], references: [id])
@@ -59,65 +47,28 @@ model Projects {
   @@map("projetos")
 }
 
-model Taks {
+model Actions {
   id Int @id @default(autoincrement())
   
-  responsible String
   description String
 
-  endDate   String
-  startDate String
-
-  taskTime String
-  realEndDate String
-  realStartDate String
-
-  completionPercent String
-
-  priority Priority
-  taskType TaskType
-  
-  deletedAt DateTime?
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
+  
+  deletedAt DateTime?
 
   ProjectId Int @unique
   Project Projects @relation(fields: [ProjectId], references: [id])
-}
 
-// enums
-enum Team {
-  ti
-  dados
-  design
-  desenvolvimento
-}
-
-enum Status {
-  previsto
-  cancelado
-  concluido
-  andamento
-  planejado
-}
-
-enum TaskType {
-  bug
-  refatoracao
-  performance
-  estilo
-  documentacao
-}
-
-enum Priority {
-  alta
-  baixa
-  media
+	@@map("acoes")
 }
 
 enum Role {
   user
   admin
+  analyst
+  enterprise
+  collaborator
 }
 
 enum SN {

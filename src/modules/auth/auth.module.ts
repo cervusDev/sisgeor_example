@@ -5,7 +5,6 @@ import { JwtUsecase } from './usecase/jwt.usecase';
 import { UsersModule } from '../users/users.module';
 import { JwtStrategy } from './provider/jwt.strategy';
 import { AuthController } from './http/auth.controller';
-import { FindUserByEmailUseCase } from '../users/usecases/find_by_email/find_by_email.usecase';
 import { FindAllUsersUseCase } from '../users/usecases/find_all/find_all_users.usecase';
 import { PrismaService } from 'src/infra/database/prisma/prisma.service';
 import { UsersPrismaRepository } from '../users/gateaways/prisma/users.prisma.repository';
@@ -24,9 +23,8 @@ import { UsersPrismaRepository } from '../users/gateaways/prisma/users.prisma.re
     JwtUsecase,
     JwtStrategy,
     PrismaService,
-    UsersPrismaRepository,
     FindAllUsersUseCase,
-    FindUserByEmailUseCase,
+    UsersPrismaRepository,
   ],
 })
 export class AuthModule {}

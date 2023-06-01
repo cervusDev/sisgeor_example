@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { UseCase } from 'src/common/interfaces/usecase';
+import { Project } from '../../http/entities/project.entity';
 import { ProjectsPrismaRepository } from '../../gateaways/prisma/projetcs.prisma.repository';
 
 @Injectable()
-export class FindAllProjectsUseCase implements UseCase<any, any> {
+export class FindProjectsByUserIdUseCase implements UseCase<number, Project[]> {
   constructor(private readonly prismaRepository: ProjectsPrismaRepository) {}
 
-  public async execute() {
-    return this.prismaRepository.findAll();
+  public execute(input: number): Promise<Project[]> {
+    return this.prismaRepository.findProjectsByUserId(input);
   }
 }
